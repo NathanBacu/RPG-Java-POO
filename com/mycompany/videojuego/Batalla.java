@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class Batalla {
     
-    public static void iniciarPelea(Personaje j1, Personaje j2){
+    public static int iniciarPelea(Personaje j1, Personaje j2){
         
         Scanner sc = new Scanner(System.in);
         
@@ -33,10 +33,11 @@ public class Batalla {
                 System.out.println("J1. Turno " + contadorTurnos);
                 System.out.println(j1.mostrarEstado());
                 System.out.println(j1.setMovimientos());
-
-                int eleccion = sc.nextInt();
                 
                 try {
+                    
+                    int eleccion = sc.nextInt();
+                    
                     todoOk = true;
                     if (eleccion == 1) {
                         dañoGenerado = j1.ataque1();
@@ -55,7 +56,9 @@ public class Batalla {
                         todoOk = false;
                     }
                 }catch(Exception e){
-                    System.out.println("Solo puede ser numero 1,2 y 3");
+                    System.out.println("Debe ser un numero!!!");
+                    sc.nextLine();
+                    todoOk = false;
                 }
                 
             } while (!todoOk);
@@ -72,10 +75,11 @@ public class Batalla {
                 System.out.println("J2. Turno " + contadorTurnos);
                 System.out.println(j2.mostrarEstado());
                 System.out.println(j2.setMovimientos());
-
-                int eleccion = sc.nextInt();
                 
                 try {
+                    
+                    int eleccion = sc.nextInt();
+                    
                     if (eleccion == 1) {
                         dañoGenerado = j2.ataque1();
                         estaMuerto = j1.recibirDaño(dañoGenerado);
@@ -93,10 +97,11 @@ public class Batalla {
                         todoOk = false;
                     }
                 }catch(Exception e){
-                    System.out.println("Solo puede ser numero 1,2 y 3");
+                    System.out.println("Debe ser un numero!!!");
+                    sc.nextLine();
+                    todoOk = false;
                 }
                 
-                ++contadorTurnos;
             } while (!todoOk);
             
             //Comprobamos que el jugador 2 no haya matado al jugador 1, y en caso de hacerlo rompemos el bucle enseñando el mensaje de victoria
@@ -105,15 +110,12 @@ public class Batalla {
                 break;
             }
             
+            ++contadorTurnos;
+            
         }while(true);
         
         
-        if (jugadorGanador == 1){
-            System.out.println("El jugador 1 ha ganado!!!");
-        }
-        else {
-            System.out.println("El jugador 2 ha ganado!!!");
-        }
+        return jugadorGanador;
         
     }
     
