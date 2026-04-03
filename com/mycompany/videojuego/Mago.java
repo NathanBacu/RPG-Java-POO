@@ -24,11 +24,11 @@ public class Mago extends Personaje{
      */
     @Override
     public boolean recibirDaño(int dañoRecibido) {
-        if(dañoRecibido >= vidaRestante){
+        if(dañoRecibido >= this.getVidaRestante()){
             return true;
         }
         else {
-            this.vidaRestante -= dañoRecibido;
+            this.setVidaRestante(this.getVidaRestante() - dañoRecibido);
             return false;
         }
     }
@@ -39,7 +39,7 @@ public class Mago extends Personaje{
      */
     @Override
     public String mostrarEstado() {
-        String mensaje = "Mago: Mana restante = " + this.mana + ", " + this.nombre + " HP: " + this.vidaRestante + "/" + this.VIDA_MAX;
+        String mensaje = "Mago: Mana restante = " + this.mana + ", " + this.getNombre() + " HP: " + this.getVidaRestante() + "/" + this.getVIDA_MAX();
         return mensaje;
     }
 
@@ -62,7 +62,7 @@ public class Mago extends Personaje{
     @Override
     public int ataque1() {
         
-        int dañoGenerado = this.dañoBase/2;
+        int dañoGenerado = this.getDañoBase()/2;
          
         return dañoGenerado;
     } 
@@ -77,7 +77,7 @@ public class Mago extends Personaje{
         int dañoGenerado = 0;
         
         if(mana >= this.mana){
-            dañoGenerado = this.dañoBase*2;
+            dañoGenerado = this.getDañoBase()*2;
             this.mana -= 20;
         }
         
@@ -93,11 +93,11 @@ public class Mago extends Personaje{
         
         int curacion = 25;
         
-        if (this.vidaRestante + curacion > this.VIDA_MAX){
-            this.vidaRestante = 200;
+        if (this.getVidaRestante() + curacion > this.getVIDA_MAX()){
+            this.setVidaRestante(this.getVIDA_MAX());
         }
         else {
-            this.vidaRestante += curacion;
+            this.setVidaRestante(getVidaRestante() + curacion);
         }
         return 0;
     }

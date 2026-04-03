@@ -24,11 +24,11 @@ public class Paladin extends Personaje{
      */
     @Override
     public boolean recibirDaño(int dañoRecibido) {
-        if(dañoRecibido >= vidaRestante){
+        if(dañoRecibido >= this.getVidaRestante()){
             return true;
         }
         else {
-            this.vidaRestante -= dañoRecibido;
+            this.setVidaRestante(this.getVidaRestante() - dañoRecibido);
             return false;
         }
     }
@@ -39,7 +39,7 @@ public class Paladin extends Personaje{
      */
     @Override
     public String mostrarEstado() {
-        String mensaje = "Paladin: Buff DMG nivel " + this.contBuff + " (+10 por nivel), " + this.nombre + " HP: " + this.vidaRestante + "/" + this.VIDA_MAX;
+        String mensaje = "Paladin: Buff DMG nivel " + this.contBuff + " (+10 por nivel), " + this.getNombre() + " HP: " + this.getVidaRestante() + "/" + this.getVIDA_MAX();
         return mensaje;
     }
     
@@ -62,7 +62,7 @@ public class Paladin extends Personaje{
     @Override
     public int ataque1() {
         
-        int dañoGenerado = this.dañoBase + this.buffDaño;
+        int dañoGenerado = this.getDañoBase() + this.buffDaño;
          
         return dañoGenerado;
     } 
@@ -88,11 +88,11 @@ public class Paladin extends Personaje{
         
         int curacion = 20;
         
-        if (this.vidaRestante + curacion > this.VIDA_MAX){
-            this.vidaRestante = 200;
+        if (this.getVidaRestante() + curacion > this.getVIDA_MAX()){
+            this.setVidaRestante(this.getVIDA_MAX());
         }
         else {
-            this.vidaRestante += curacion;
+            this.setVidaRestante(getVidaRestante() + curacion);
         }
         
         return 0;

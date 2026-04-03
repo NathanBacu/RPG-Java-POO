@@ -10,16 +10,43 @@ package com.mycompany.videojuego;
  */
 public abstract class Personaje {
     
-    protected final int VIDA_MAX = 200;
-    protected int vidaRestante = 200;
-    protected String nombre;
-    protected int dañoBase = 20;
+    private final int VIDA_MAX = 200;
+    private int vidaRestante = 200;
+    private String nombre;
+    private int dañoBase = 20;
 
     public Personaje(String nombre) {
         this.nombre = nombre;
         this.dañoBase = dañoBase;
     }
-    
+
+    public int getVidaRestante() {
+        return vidaRestante;
+    }
+
+    public void setVidaRestante(int vidaRestante) {
+        this.vidaRestante = vidaRestante;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getDañoBase() {
+        return dañoBase;
+    }
+
+    public void setDañoBase(int dañoBase) {
+        this.dañoBase = dañoBase;
+    }
+
+    public int getVIDA_MAX() {
+        return VIDA_MAX;
+    }
     
     public abstract boolean recibirDaño(int dañoRecibido);
     public abstract String mostrarEstado();

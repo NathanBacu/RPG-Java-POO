@@ -26,11 +26,11 @@ public class Barbaro extends Personaje{
     @Override
     public boolean recibirDaño(int dañoRecibido) {
         
-        if(dañoRecibido >= vidaRestante){
+        if(dañoRecibido >= this.getVidaRestante()){
             return true;
         }
         else {
-            this.vidaRestante -= dañoRecibido;
+            this.setVidaRestante(this.getVidaRestante() - dañoRecibido);
             return false;
         }
     }
@@ -42,7 +42,7 @@ public class Barbaro extends Personaje{
     @Override
     public String mostrarEstado() {
         
-        String mensaje = "Barbaro: Modo Furia = " + this.isFuria + " turnos restantes, " + this.nombre + " HP: " + this.vidaRestante + "/" + this.VIDA_MAX;
+        String mensaje = "Barbaro: Modo Furia = " + this.isFuria + " turnos restantes, " + this.getNombre() + " HP: " + this.getVidaRestante() + "/" + this.getVIDA_MAX();
         return mensaje;
     }
     
@@ -67,7 +67,7 @@ public class Barbaro extends Personaje{
     @Override
     public int ataque1() {
         
-        int dañoGenerado = this.dañoBase;
+        int dañoGenerado = this.getDañoBase();
         
         if (isFuria) {
           dañoGenerado *= 2;
@@ -101,7 +101,7 @@ public class Barbaro extends Personaje{
     @Override
     public int ataque3(){
         
-        int dañoGenerado = this.dañoBase - 5;
+        int dañoGenerado = this.getDañoBase() - 5;
         int curacion = 10;
         
         if(this.isFuria){
@@ -110,11 +110,11 @@ public class Barbaro extends Personaje{
             --this.turnosFuria;
         }
         
-        if (this.vidaRestante + curacion > this.VIDA_MAX){
-            this.vidaRestante = 200;
+        if (this.getVidaRestante() + curacion > this.getVIDA_MAX()){
+            this.setVidaRestante(this.getVIDA_MAX());
         }
         else {
-            this.vidaRestante += curacion;
+            this.setVidaRestante(getVidaRestante() + curacion);
         }
         
         //Comprobamos el contador de turnos, y si esta a 0 quitamos el modo furia
